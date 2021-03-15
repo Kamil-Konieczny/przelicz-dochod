@@ -1,0 +1,114 @@
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="modal.css">
+</head>
+<body>
+
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                </br>
+                <span class="close">&times;</span>
+                <h2 style="text-align: center;">Twój wynik to: </h2>
+                </br>
+            </div>
+            </br></br></br>
+            <div class="modal-body" style="text-align: center;">
+                <span style="font-size: 40px;  font-weight: bold;" th:text="${sum}+zł"></span>
+            </div>
+            </br></br></br>
+            <div class="modal-footer">
+                </br>
+                <h3 style="text-align: center;"><a th:href="@{/generate_pdf}">> Pobierz wyniki w PDF << </a></h3>
+                </br>
+            </div>
+        </div>
+    </div>
+
+<div class="topnav">
+    
+    <div class="topnav-centered">
+        <a href="#home" class="active" style="font-size:23px;">Przelicz<span style="font-size:23px;color: #00ace6;">Dochód</span></a>
+    </div>
+    <a href="#contact">Contact</a>
+    
+
+</div>
+
+<form th:action="@{/addRow}" th:object="${newRow}" method="post">
+<div class="selectdiv" >
+    <label>
+        <select id="selectdiv" th:field="*{symbol}">
+            <option th:value ="USD"selected> USD </option>
+            <option th:value ="EUR">EUR</option>
+            <option th:value ="CHF">CHF</option>
+            <option th:value ="GBP">GBP</option>
+            <option th:value ="JPY">JPY</option>
+        </select>
+    </label>
+</div>
+<div class = "amount">
+
+    <fieldset>
+        <legend>Dodaj transakcję</legend>
+        <p><label for="amount">Kwota transakcji: </label>
+        <input type = "number" step=0.1 id="amount" name = "amount" text = "kwota" th:field="*{amount}" required>
+        </p>
+         </br></br></br>
+        <p>
+        <label for="date">Data transakcji: </label>
+        <input type="date" id="date" name = "date" th:min="2012-01-01" th:max="${now_date}" th:field="*{date}"  required>
+        </p>
+        </br></br></br></br>
+        <input type ="submit" id="add_button"  name="add_button" value="Dodaj">
+    </fieldset>
+</div>
+</form>
+
+<table id="myTable">
+    <tr style="width: 100%;">
+        <th class = "cell">Waluta</th>
+        <th class = "cell">Kwota</th>
+        <th class = "cell">Kurs dnia poprzedniego </br> <span style="font-size: 10px;">(lub wcześniejszy w razie świąt)</span></th>
+        <th class = "cell">Kwota w PLN</th>
+        <th class = "cell">Data transakcji</th>
+        <th class = "cell">Usuń</th>
+    </tr>
+    <tr th:each="TableRow:${rows}">
+        <td th:text="${TableRow.symbol}"></td>
+        <td th:text="${TableRow.amount}"></td>
+        <td th:text="${TableRow.exchange_rate}+' ('+${TableRow.exchange_rate_date}+')'"></td>
+        <td th:text="${TableRow.PLN_amount}  "></td>
+        <td th:text="${TableRow.date}"></td>
+        <td> <a th:href="@{'/deleteRow/' + ${TableRow.getId()}}">
+            <img src="/x.PNG" width="50" height="30" alt="submit" /></a>
+        </td>
+    </tr>
+</table>
+
+    <input type = "button" value="Podsumowanie" name="SumUp"  id="SumUp"/>
+
+</body>
+</html>
+<script>
+    var modal = document.getElementById("myModal");
+
+    var btn = document.getElementById("SumUp");
+
+    var span = document.getElementsByClassName("close")[0];
+
+    btn.onclick = function() {
+        modal.style.display = "block";
+    }
+
+    span.onclick = function() {
+        modal.style.display = "none";
+    }
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+</script>

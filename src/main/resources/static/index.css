@@ -1,0 +1,189 @@
+html * {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #f2f2f2;
+    height: 100vh;
+    font-family: sans-serif;
+}
+
+.topnav {
+    position: relative;
+    overflow: hidden;
+    background-color: #333;
+}
+
+.topnav a {
+    float: left;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+.topnav a:hover {
+    background-color: #ddd;
+    color: black;
+}
+
+.topnav a.active {
+    background-color: #333;
+    color: white;
+}
+
+.topnav-centered a {
+    float: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.topnav-right {
+    float: right;
+}
+
+legend
+{
+    padding: 5px 10px;
+    color: #4dd2ff;
+}
+
+fieldset {
+    display: block;
+    margin-right: 2px;
+    padding-top: 6vh;
+    padding-bottom: 6vh;
+    padding-left: 8vw;
+    padding-right:8vw;
+    border: 2px groove;
+    border-color: #00ace6;
+    border-radius: 9px;
+}
+.amount
+{
+    position: fixed;
+    width: 40%;
+    margin-left:5%;
+    margin-top: 11%;
+}
+
+#add_button
+{
+    background-color: #00ace6;
+}
+
+
+.selectdiv {
+    position: fixed;
+    width: 14%;
+    margin: 3% 5% ;
+    border-radius: 5px;
+    border: none;
+}
+
+/* IE11 hide native button (thanks Matt!) */
+select::-ms-expand {
+    display: none;
+    border: none;
+}
+
+.selectdiv:after {
+    content: '<>';
+    font: 17px "Consolas", monospace;
+    color: #333;
+    -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    transform: rotate(90deg);
+    right: 11px;
+    /*Adjust for position however you want*/
+    border: none;
+    top: 18px;
+    padding: 0 0 2px;
+    /*left line */
+
+    position: absolute;
+    pointer-events: none;
+}
+
+.selectdiv select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    /* Add some styling */
+
+    display: block;
+    width: 100%;
+    max-width: 320px;
+    height: 50px;
+    float: right;
+    margin: 5px 0px;
+    padding: 0px 24px;
+    font-size: 16px;
+    line-height: 1.75;
+    color: #333;
+    border-radius: 5px;
+    background-color: #ddd;
+    background-image: none;
+    border: none;
+    -ms-word-break: normal;
+    word-break: normal;
+}
+
+input {
+    width: 100%;
+    border:none;
+    padding: 1rem;
+    cursor: pointer;
+    border-radius: 5px;
+    background-color: #ddd;
+    list-style: none;
+}
+
+label {
+    width: 100%;
+    display: block;
+    cursor: pointer;
+}
+table {
+    height:75%;
+    display: flex;
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    background-color: #e6e6e6;
+    width: 40%;
+    margin-top: 3%;
+    margin-left: 55%;
+    overflow-y: scroll;
+}
+
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: center;
+    margin-right:0;
+    width: 20vmax;
+    height: 50px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+#SumUp
+{
+    position: absolute;
+    width: 94%;
+    left: 3%;
+    background-color: #333;
+    bottom: 2%;
+    color: white;
+}
