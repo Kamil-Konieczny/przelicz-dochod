@@ -21,7 +21,7 @@
             </br></br></br>
             <div class="modal-footer">
                 </br>
-                <h3 style="text-align: center;"><a th:href="@{/generate_pdf}">> Pobierz wyniki w PDF << </a></h3>
+                <h3 style="text-align: center;"><a th:href="@{/generate_pdf}"> >> Pobierz wyniki w PDF << </a></h3>
                 </br>
             </div>
         </div>
@@ -54,7 +54,7 @@
     <fieldset>
         <legend>Dodaj transakcję</legend>
         <p><label for="amount">Kwota transakcji: </label>
-        <input type = "number" step=0.1 id="amount" name = "amount" text = "kwota" th:field="*{amount}" required>
+        <input autofocus type = "number" step=0.01 id="amount" name = "amount" text = "kwota" th:field="*{amount}" required>
         </p>
          </br></br></br>
         <p>

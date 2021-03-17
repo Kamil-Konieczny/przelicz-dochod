@@ -1,6 +1,6 @@
 package com.przeliczdochod.przeliczdochod;
 
-import com.lowagie.text.DocumentException;
+import com.itextpdf.text.DocumentException;
 import com.przeliczdochod.przeliczdochod.pojos.TableRow;
 import org.decimal4j.util.DoubleRounder;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,8 +8,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.xml.transform.TransformerException;
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -21,10 +23,10 @@ public class Api {
     @Autowired
     private Price_manager price_manager;
 
-
+    @Autowired
     private CreatePdf createPdf;
 
-    List<TableRow> rowList = new ArrayList<>();
+    private List<TableRow> rowList = new ArrayList<>();
 
 
 
@@ -39,13 +41,15 @@ public class Api {
         {
             sum +=row.getPLN_amount();
         }
-        model.addAttribute("sum",sum);
+        DecimalFormat numberFormat = new DecimalFormat("#.00");
+        Double sum_round= DoubleRounder.round((sum),3);
+        model.addAttribute("sum",sum_round);
 
         return "mainPage";
     }
     int x=1;
     @PostMapping("/addRow")
-    public String addRow( @ModelAttribute("tableRow") TableRow tableRow) throws InterruptedException, TransformerException, IOException {
+    public String addRow( @ModelAttribute TableRow tableRow) throws InterruptedException, TransformerException, IOException {
         LocalDate date = tableRow.getDate();
         String symbol = tableRow.getSymbol();
         Double amount = tableRow.getAmount();
@@ -78,8 +82,11 @@ public class Api {
         return "redirect:/mainPage";
     }
     @GetMapping("/generate_pdf")
-    public void generate_pdf() throws IOException, DocumentException {
-        String str = "cos tam cos tam";
-        createPdf.generatePdfFromHtml(str);
+    public void generate_pdf(HttpServletResponse response) throws IOException, URISyntaxException, DocumentException {
+        response.setContentType("application/pdf");
+        String headerKey = "Content-Disposition";
+        String headerValue = "attachment;filename=podsumowanie-transakcji.pdf";
+        response.setHeader(headerKey,headerValue);
+        createPdf.generatePdfFromHtml(rowList,response);
     }
 }
