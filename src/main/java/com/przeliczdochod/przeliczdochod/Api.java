@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
+@RequestMapping("")
 public class Api {
 
     @Autowired
@@ -30,7 +31,7 @@ public class Api {
 
 
 
-    @GetMapping("/mainPage")
+    @GetMapping("")
     public String mainPage( Model model){
 
         model.addAttribute("rows",rowList);
@@ -71,7 +72,7 @@ public class Api {
         tableRow.setExchange_rate_date(date1);
         rowList.add(tableRow);
         x++;
-        return "redirect:/mainPage";
+        return "redirect:";
     }
 
     @GetMapping("/deleteRow/{id}")
@@ -79,7 +80,7 @@ public class Api {
     {
         rowList.removeIf(row -> (row.getId()==id));
 
-        return "redirect:/mainPage";
+        return "redirect:";
     }
     @GetMapping("/generate_pdf")
     public void generate_pdf(HttpServletResponse response) throws IOException, URISyntaxException, DocumentException {
