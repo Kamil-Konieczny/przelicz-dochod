@@ -3,6 +3,9 @@
 <head>
     <link rel="stylesheet" href="index.css">
     <link rel="stylesheet" href="modal.css">
+    <link rel="icon"
+          type="image/png"
+          href="https://cdn3.iconfinder.com/data/icons/accounting-22/50/38-512.png">
 </head>
 <body>
 
@@ -83,7 +86,7 @@
         <td th:text="${TableRow.PLN_amount}  "></td>
         <td th:text="${TableRow.date}"></td>
         <td> <a th:href="@{'/deleteRow/' + ${TableRow.getId()}}">
-            <img src="/x.PNG" width="50" height="30" alt="submit" /></a>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/b/ba/Red_x.svg" width="50" height="30" alt="submit" /></a>
         </td>
     </tr>
 </table>
