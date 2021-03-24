@@ -163,7 +163,7 @@ table {
     width: 40%;
     margin-top: 3%;
     margin-left: 55%;
-    overflow-y: scroll;
+    overflow-y: auto;
 }
 
 

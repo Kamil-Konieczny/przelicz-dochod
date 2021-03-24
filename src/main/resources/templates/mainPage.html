@@ -30,13 +30,47 @@
         </div>
     </div>
 
-<div class="topnav">
+    <div id="contact_modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                </br>
+                <span class="close2">&times;</span>
+                <h2 style="text-align: center; color:black;">Wszelkie pytania należy kierować na podany poniżej email:  </h2>
+                </br>
+            </div>
+            </br></br></br>
+            <div class="modal-body" style="text-align: center;">
+                <span style="font-size: 30px;  font-weight: bold;">programmer.bookshelf@gmail.com</span>
+            </div>
+            </br></br></br>
+
+        </div>
+    </div>
+    <div id="how_to_modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                </br>
+                <span class="close3">&times;</span>
+                <h2 style="text-align: center; color:black;">Działanie programu:  </h2>
+                </br>
+            </div>
+            </br></br></br>
+            <div class="modal-body" style="text-align: center;">
+          <img src="Jak-działa-1.jpg" height="120%" width="60%">
+                <img src="Jak-działa-2.jpg" height="120%" width="60%">
+            </div>
+            </br></br></br>
+
+        </div>
+    </div>
+
+    <div class="topnav">
     
     <div class="topnav-centered">
         <a href="#home" class="active" style="font-size:23px;">Przelicz<span style="font-size:23px;color: #00ace6;">Dochód</span></a>
     </div>
-    <a href="#contact">Contact</a>
-    
+        <a name ="contact" id= "contact" >Kontakt</a>
+    <a name ="how-to" id= "how-to">Jak działa przeliczdochod?</a>
 
 </div>
 
@@ -57,7 +91,7 @@
     <fieldset>
         <legend>Dodaj transakcję</legend>
         <p><label for="amount">Kwota transakcji: </label>
-        <input autofocus type = "number" step=0.01 id="amount" name = "amount" text = "kwota" th:field="*{amount}" required>
+        <input autofocus type = "number" step=0.01 id="amount" name = "amount"  th:field="*{amount}" required>
         </p>
          </br></br></br>
         <p>
@@ -96,6 +130,18 @@
 </body>
 </html>
 <script>
+    var x = document.getElementById("amount");
+
+
+
+
+    let objDiv = document.getElementById("myTable");
+    objDiv.scrollTop = objDiv.scrollHeight;
+
+
+
+
+
     var modal = document.getElementById("myModal");
 
     var btn = document.getElementById("SumUp");
@@ -105,13 +151,51 @@
     btn.onclick = function() {
         modal.style.display = "block";
     }
-
     span.onclick = function() {
         modal.style.display = "none";
     }
     window.onclick = function(event) {
         if (event.target == modal) {
             modal.style.display = "none";
+        }
+    }
+
+
+    var how_to_modal = document.getElementById("how_to_modal");
+
+    var btn2 = document.getElementById("how-to");
+
+    var span2 = document.getElementsByClassName("close3")[0];
+
+    btn2.onclick = function() {
+        how_to_modal.style.display = "block";
+    }
+    span2.onclick = function() {
+        how_to_modal.style.display = "none";
+    }
+    window.onclick = function(event) {
+        if (event.target == how_to_modal) {
+            how_to_modal.style.display = "none";
+        }
+    }
+
+
+
+    var contact_modal = document.getElementById("contact_modal");
+
+    var btn2 = document.getElementById("contact");
+
+    var span2 = document.getElementsByClassName("close2")[0];
+
+    btn2.onclick = function() {
+        contact_modal.style.display = "block";
+    }
+    span2.onclick = function() {
+        contact_modal.style.display = "none";
+    }
+    window.onclick = function(event) {
+        if (event.target == contact_modal) {
+            contact_modal.style.display = "none";
         }
     }
 </script>
